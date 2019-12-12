@@ -14,8 +14,10 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/products")
-    private List<Product> getAllPersons() {
-        return productService.getAllProducts();
+    @GetMapping(path = "/products", params = {"page", "size"})
+    private List<Product> getAllPersons(@RequestParam("page") int page,
+                                        @RequestParam("size") int size) {
+
+        return productService.getAllProducts(page, size);
     }
 }
